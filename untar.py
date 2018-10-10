@@ -8,6 +8,7 @@ dirname = "s3upload"
 tarfilename = "sample.tar.gz"
 filename = []
 master_bucket = "lincyfinal"
+apath = "/home/lincytv/scripts/s3upload/"
 
 f = open('s3uploadedlist.log', 'a+')
 
@@ -31,6 +32,7 @@ def upload_file(master_bucket,filename):
 
 
 conn = boto3.client('s3')
+conn2 = boto3.resource('s3')
 
 oblist = conn.list_objects_v2(Bucket= s3bucket)
 for i in oblist["Contents"]:
@@ -46,7 +48,8 @@ fileextrace = os.listdir("s3upload")
 os.chdir("s3upload")
 for i in fileextrace:
     try:
-        conn.put_object(master_bucket, i)
+        conn.upload_file(apath, master_bucket, i )
+        #conn.put_object(master_bucket, i)
         f.write(i)
     except Exception as e:
         print e
