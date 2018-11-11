@@ -1,0 +1,16 @@
+manage user pool
+create user pool 
+  - name 
+  - step by through
+atribute's > select the user email and phone
+policy > only admin can create user
+MFA > optional create the role
+app client > name , keep default
+trriger > skip
+domain name > name and verify 
+app client setting > select corgnito user pool
+                   call back url : https://{DNS alb}/oauth2/idpresponse
+                   select Authorization code grant 
+                   select openid
+                   
+
